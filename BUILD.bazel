@@ -1,0 +1,3 @@
+# Root BUILD.bazel — re-exports the top-level library and app targets.
+
+package(default_visibility = ["//visibility:public"])

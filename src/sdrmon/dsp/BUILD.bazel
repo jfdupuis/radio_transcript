@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "dsp",
+    srcs = [
+        "decimator.cc",
+        "fm_demodulator.cc",
+    ],
+    hdrs = [
+        "decimator.h",
+        "fm_demodulator.h",
+    ],
+    strip_include_prefix = "/src",
+)

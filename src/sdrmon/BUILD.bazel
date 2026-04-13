@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+# Top-level sdrmon library target — aggregates all sub-libraries.
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "sdrmon",
+    deps = [
+        "//src/sdrmon/dsp",
+        "//src/sdrmon/monitor",
+        "//src/sdrmon/protocol",
+        "//src/sdrmon/rtlsdr:rtlsdr_device",
+    ],
+)

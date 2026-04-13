@@ -1,0 +1,20 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "protocol",
+    srcs = [
+        "fleetsync_decoder.cc",
+        "mdc1200_decoder.cc",
+    ],
+    hdrs = [
+        "fleetsync_decoder.h",
+        "mdc1200_decoder.h",
+    ],
+    strip_include_prefix = "/src",
+    deps = [
+        "//third_party/fsync_mdc",
+    ],
+    copts = ["-Wno-unused-parameter"],
+)

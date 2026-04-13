@@ -1,0 +1,22 @@
+# Vendored RTL-SDR headers + system library link target.
+# The actual librtlsdr.so / librtlsdr.dylib must be installed on the host:
+#   Linux : apt install librtlsdr-dev
+#   macOS : brew install librtlsdr
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "rtlsdr",
+    hdrs = [
+        "rtl-sdr.h",
+        "rtl-sdr_export.h",
+    ],
+    includes = ["."],
+    linkopts = select({
+        "@platforms//os:macos": ["-lrtlsdr"],
+        "@platforms//os:linux": ["-lrtlsdr"],
+        "//conditions:default": ["-lrtlsdr"],
+    }),
+)

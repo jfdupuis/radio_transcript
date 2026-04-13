@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_binary(
+    name = "sdrmon",
+    srcs = ["main.cc"],
+    deps = [
+        "//src/sdrmon/monitor",
+        "//src/sdrmon/rtlsdr:rtlsdr_device",
+    ],
+    linkopts = select({
+        "@platforms//os:linux": ["-lpthread"],
+        "//conditions:default": [],
+    }),
+)

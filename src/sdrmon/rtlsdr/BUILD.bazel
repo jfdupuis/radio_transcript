@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "rtlsdr_device",
+    srcs = ["rtlsdr_device.cc"],
+    hdrs = ["rtlsdr_device.h"],
+    strip_include_prefix = "/src",
+    deps = ["//third_party/rtlsdr"],
+    copts = ["-Wno-unused-result"],
+)

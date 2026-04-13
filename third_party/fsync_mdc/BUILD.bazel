@@ -1,0 +1,29 @@
+# FleetSync I/II and MDC1200 decoder library.
+# Source adapted from:
+#   https://github.com/jfdupuis/fsync-mdc1200-decode (GPL-2.0)
+#   Original: Matthew Kaufman (matthew@eeph.com)
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "fsync_mdc",
+    srcs = [
+        "fsync_decode.cc",
+        "mdc_decode.c",
+    ],
+    hdrs = [
+        "fsync_common.c",   # textually included by fsync_decode.cc
+        "fsync_decode.h",
+        "fsync_types.h",
+        "mdc_common.c",     # textually included by mdc_decode.c
+        "mdc_decode.h",
+        "mdc_types.h",
+    ],
+    includes = ["."],
+    copts = [
+        "-Wno-unused-function",
+        "-Wno-unused-variable",
+    ],
+)

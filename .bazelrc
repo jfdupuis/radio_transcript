@@ -1,0 +1,25 @@
+# Common C++ flags
+build --cxxopt=-std=c++17
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wno-unused-parameter
+build --host_cxxopt=-std=c++17
+
+# Optimize for release
+build:release --cxxopt=-O2
+build:release --cxxopt=-DNDEBUG
+
+# Debug build
+build:debug --cxxopt=-g
+build:debug --cxxopt=-O0
+
+# macOS: Homebrew prefix for system libraries (Intel)
+build:macos_x86 --copt=-I/usr/local/include
+build:macos_x86 --linkopt=-L/usr/local/lib
+
+# macOS: Homebrew prefix for system libraries (Apple Silicon)
+# Headers are vendored under //third_party/rtlsdr — no extra -I needed.
+build:macos_arm --linkopt=-L/opt/homebrew/lib
+
+# Linux: Standard system include/lib paths (usually fine without extra flags)
+# If librtlsdr is installed via 'apt install librtlsdr-dev', no extra flags needed.

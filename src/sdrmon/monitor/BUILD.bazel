@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "monitor",
+    srcs = ["radio_monitor.cc"],
+    hdrs = [
+        "channel_config.h",
+        "radio_event.h",
+        "radio_monitor.h",
+        "transcript_engine.h",
+    ],
+    strip_include_prefix = "/src",
+    deps = [
+        "//src/sdrmon/dsp",
+        "//src/sdrmon/protocol",
+        "//src/sdrmon/rtlsdr:rtlsdr_device",
+    ],
+    linkopts = select({
+        "@platforms//os:linux": ["-lpthread"],
+        "//conditions:default": [],
+    }),
+)
